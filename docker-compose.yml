@@ -1,0 +1,123 @@
+# ----------------------------------------------------------------------------
+# Suggested infrastructure for the Frame Inventory exercise.
+#
+# This compose file is a starting point, not a requirement. You are free to
+# swap any of these services for tooling you prefer (a different database,
+# search engine, message broker, hosting model, etc.) as long as the final
+# stack still runs end-to-end with a single command.
+#
+# If you do choose to use the services provided here, pick ONE of the two
+# datastores for your domain data — either `mongodb` or `mariadb-primary`,
+# not both. Remove the service you do not need (and its volume) so the
+# stack reflects the design you actually built.
+# ----------------------------------------------------------------------------
+
+services:
+  backend:
+    build:
+      context: ./src/backend
+    container_name: frame-inventory-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - mongodb
+      - mariadb-primary
+      - opensearch
+    networks:
+      - frame-inventory
+
+  frontend:
+    build:
+      context: ./src/frontend
+    container_name: frame-inventory-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_BACKEND_URL: http://backend:8080
+    volumes:
+      - ./src/frontend/src:/app/src
+      - ./src/frontend/public:/app/public
+      - ./src/frontend/index.html:/app/index.html
+    depends_on:
+      - backend
+    networks:
+      - frame-inventory
+
+  mongodb:
+    image: mongo:7
+    container_name: frame-inventory-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: frames
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - frame-inventory
+
+  mariadb-primary:
+    image: mariadb:11
+    container_name: frame-inventory-mariadb-primary
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: frames
+      MARIADB_USER: app
+      MARIADB_PASSWORD: app
+    volumes:
+      - mariadb-primary-data:/var/lib/mysql
+    networks:
+      - frame-inventory
+
+  opensearch:
+    image: opensearchproject/opensearch:2.18.0
+    container_name: frame-inventory-opensearch
+    environment:
+      cluster.name: frame-inventory-cluster
+      node.name: opensearch
+      discovery.type: single-node
+      bootstrap.memory_lock: "true"
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+      DISABLE_SECURITY_PLUGIN: "true"
+      DISABLE_INSTALL_DEMO_CONFIG: "true"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    networks:
+      - frame-inventory
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.18.0
+    container_name: frame-inventory-opensearch-dashboards
+    ports:
+      - "5601:5601"
+    environment:
+      OPENSEARCH_HOSTS: '["http://opensearch:9200"]'
+      DISABLE_SECURITY_DASHBOARDS_PLUGIN: "true"
+    depends_on:
+      - opensearch
+    networks:
+      - frame-inventory
+
+volumes:
+  mongodb-data:
+  mariadb-primary-data:
+  opensearch-data:
+
+networks:
+  frame-inventory:
+    driver: bridge
