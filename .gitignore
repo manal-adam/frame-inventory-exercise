@@ -11,16 +11,16 @@ Thumbs.db
 .claude/
 
 # Backend (Gradle / Java)
-backend/.gradle/
-backend/build/
-backend/out/
-backend/bin/
+src/backend/.gradle/
+src/backend/build/
+src/backend/out/
+src/backend/bin/
 
 # Frontend (Node)
-frontend/node_modules/
-frontend/dist/
-frontend/.vite/
-frontend/*.local
+src/frontend/node_modules/
+src/frontend/dist/
+src/frontend/.vite/
+src/frontend/*.local
 
 # Logs
 *.log
