@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "f4e88e3a4d0a",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/Action.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/ChangedField.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/Frame.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameHistoryEntry.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameService.java"
+  ],
+  "sessions": [
+    {
+      "metadata": "/f4/e88e3a4d0a/0/metadata.json",
+      "transcript": "/f4/e88e3a4d0a/0/full.jsonl",
+      "content_hash": "/f4/e88e3a4d0a/0/content_hash.txt",
+      "prompt": "/f4/e88e3a4d0a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 152,
+    "cache_creation_tokens": 278017,
+    "cache_read_tokens": 1356593,
+    "output_tokens": 58,
+    "api_call_count": 18
+  }
+}

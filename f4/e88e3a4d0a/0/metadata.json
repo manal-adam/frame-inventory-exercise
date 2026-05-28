@@ -1,0 +1,78 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "f4e88e3a4d0a",
+  "session_id": "4a7e0ce9-5362-4551-9918-7c8b2573f55e",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T22:43:19.381125Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/Action.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/ChangedField.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/Frame.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameHistoryEntry.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameService.java"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-5-20251101",
+  "turn_id": "4fdb42adc3ec",
+  "checkpoint_transcript_start": 242,
+  "transcript_lines_at_start": 242,
+  "token_usage": {
+    "input_tokens": 152,
+    "cache_creation_tokens": 278017,
+    "cache_read_tokens": 1356593,
+    "output_tokens": 58,
+    "api_call_count": 18
+  },
+  "session_metrics": {
+    "turn_count": 16
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T22:43:19.371409Z",
+    "agent_lines": 64,
+    "agent_removed": 0,
+    "human_added": 14,
+    "human_modified": 8,
+    "human_removed": 0,
+    "total_committed": 86,
+    "total_lines_changed": 86,
+    "agent_percentage": 74.4186046511628,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 376,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "IMPLEMENTATION_PLAN.md": 376
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 22,
+      "user_lines_removed": 8,
+      "agent_lines_added": 450,
+      "agent_lines_removed": 3,
+      "user_added_per_file": {
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/ChangedField.java": 14,
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameHistoryEntry.java": 1,
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameService.java": 7
+      },
+      "user_removed_per_file": {
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameHistoryEntry.java": 1,
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameService.java": 7
+      }
+    }
+  ]
+}
