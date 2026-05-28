@@ -1,0 +1,127 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "ef380558badc",
+  "session_id": "a5d25283-051a-46ea-b3f7-b91504138130",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T11:19:28.516885Z",
+  "branch": "main",
+  "checkpoints_count": 8,
+  "files_touched": [
+    ".gitignore",
+    "src/backend/.gradle/8.13/checksums/checksums.lock",
+    "src/backend/.gradle/8.13/checksums/md5-checksums.bin",
+    "src/backend/.gradle/8.13/checksums/sha1-checksums.bin",
+    "src/backend/.gradle/8.13/executionHistory/executionHistory.lock",
+    "src/backend/.gradle/8.13/fileChanges/last-build.bin",
+    "src/backend/.gradle/8.13/fileHashes/fileHashes.bin",
+    "src/backend/.gradle/8.13/fileHashes/fileHashes.lock",
+    "src/backend/.gradle/8.13/gc.properties",
+    "src/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock",
+    "src/backend/.gradle/buildOutputCleanup/cache.properties",
+    "src/backend/.gradle/vcs-1/gc.properties"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-5-20251101",
+  "turn_id": "fad807d2ea84",
+  "token_usage": {
+    "input_tokens": 152,
+    "cache_creation_tokens": 131922,
+    "cache_read_tokens": 487697,
+    "output_tokens": 44,
+    "api_call_count": 17
+  },
+  "session_metrics": {
+    "turn_count": 8
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T11:19:28.51124Z",
+    "agent_lines": 0,
+    "agent_removed": 2,
+    "human_added": 8,
+    "human_modified": 8,
+    "human_removed": 0,
+    "total_committed": 8,
+    "total_lines_changed": 18,
+    "agent_percentage": 11.11111111111111,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 377,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "IMPLEMENTATION_PLAN.md": 377
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 377,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 377,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 8,
+      "user_lines_removed": 8,
+      "agent_lines_added": 491,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".gitignore": 8
+      },
+      "user_removed_per_file": {
+        ".gitignore": 8
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 2,
+      "user_lines_removed": 0,
+      "agent_lines_added": 499,
+      "agent_lines_removed": 10,
+      "user_added_per_file": {
+        "src/backend/.gradle/buildOutputCleanup/cache.properties": 2
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 2,
+      "user_lines_removed": 0,
+      "agent_lines_added": 499,
+      "agent_lines_removed": 10,
+      "user_added_per_file": {
+        "src/backend/.gradle/buildOutputCleanup/cache.properties": 2
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 2,
+      "user_lines_removed": 0,
+      "agent_lines_added": 499,
+      "agent_lines_removed": 10,
+      "user_added_per_file": {
+        "src/backend/.gradle/buildOutputCleanup/cache.properties": 2
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 2,
+      "user_lines_removed": 0,
+      "agent_lines_added": 499,
+      "agent_lines_removed": 10,
+      "user_added_per_file": {
+        "src/backend/.gradle/buildOutputCleanup/cache.properties": 2
+      }
+    }
+  ]
+}

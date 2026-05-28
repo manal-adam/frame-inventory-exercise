@@ -1,0 +1,44 @@
+Read the section corresponding to pr1 in IMPLEMENTATION_PLAN.md, produce a detailed breakdown of all required changes for PR1, including affected files and expected modifications. Dont make any code changes yet
+
+---
+
+this might be a bit too complicated for pr1, can you simplify it further? Read IMPLEMENTATION_PLAN.md again and break it down into ONLY the minimum required changes needed to make MongoDB + basic Frame persistence work. Do not introduce complexities beyond what is stricly needed for pr1 and only include files that are essential for PR1.
+
+---
+
+implement pr1, don't commit or push anything before I review it
+
+---
+
+git status
+
+---
+
+I'm seeing .gradle files still appearing in IntelliJ’s Git commit window, can you explain why this is happening and suggest a fix
+
+---
+
+I already ran git rm -r --cached src/backend/.gradle
+git rm -r --cached src/backend/build
+
+---
+
+But im still seeing unrelated files in the commit tab like src/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock, src/backend/.gradle/buildOutputCleanup/cache.properties, src/backend/.gradle/8.13/checksums/checksums.lock and a few others
+
+---
+
+can you list the files you modified for pr1 that should be commited
+
+---
+
+should these changes also be commited? If yes, explay the reason:     deleted:    src/backend/.gradle/8.13/checksums/checksums.lock
+        deleted:    src/backend/.gradle/8.13/checksums/md5-checksums.bin
+        deleted:    src/backend/.gradle/8.13/checksums/sha1-checksums.bin
+        deleted:    src/backend/.gradle/8.13/executionHistory/executionHistory.lock
+        deleted:    src/backend/.gradle/8.13/fileChanges/last-build.bin
+        deleted:    src/backend/.gradle/8.13/fileHashes/fileHashes.bin
+        deleted:    src/backend/.gradle/8.13/fileHashes/fileHashes.lock
+        deleted:    src/backend/.gradle/8.13/gc.properties
+        deleted:    src/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+        deleted:    src/backend/.gradle/buildOutputCleanup/cache.properties
+        deleted:    src/backend/.gradle/vcs-1/gc.properties

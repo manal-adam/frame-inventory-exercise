@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "ef380558badc",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 8,
+  "files_touched": [
+    ".gitignore",
+    "src/backend/.gradle/8.13/checksums/checksums.lock",
+    "src/backend/.gradle/8.13/checksums/md5-checksums.bin",
+    "src/backend/.gradle/8.13/checksums/sha1-checksums.bin",
+    "src/backend/.gradle/8.13/executionHistory/executionHistory.lock",
+    "src/backend/.gradle/8.13/fileChanges/last-build.bin",
+    "src/backend/.gradle/8.13/fileHashes/fileHashes.bin",
+    "src/backend/.gradle/8.13/fileHashes/fileHashes.lock",
+    "src/backend/.gradle/8.13/gc.properties",
+    "src/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock",
+    "src/backend/.gradle/buildOutputCleanup/cache.properties",
+    "src/backend/.gradle/vcs-1/gc.properties"
+  ],
+  "sessions": [
+    {
+      "metadata": "/ef/380558badc/0/metadata.json",
+      "transcript": "/ef/380558badc/0/full.jsonl",
+      "content_hash": "/ef/380558badc/0/content_hash.txt",
+      "prompt": "/ef/380558badc/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 152,
+    "cache_creation_tokens": 131922,
+    "cache_read_tokens": 487697,
+    "output_tokens": 44,
+    "api_call_count": 17
+  }
+}
