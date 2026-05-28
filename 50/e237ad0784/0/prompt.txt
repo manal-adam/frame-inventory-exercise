@@ -1,0 +1,42 @@
+I’m a junior java developer working on a take-home assignment for an OOH frame inventory management system. (see task description and requirements in [INSTRUCTIONS.md](http://instructions.md/) and [README.md](http://readme.md/) )
+
+Key constraints:
+
+- Keep the solution simple and maintainable
+- Avoid overengineering
+- Prefer a straightforward REST + CRUD design
+- Avoid advanced architectural patterns
+- Keep abstractions minimal and avoid unnecessary layers where possible.
+
+Desired approach:
+
+- REST API only
+- MongoDB as primary datastore
+- Synchronous CSV processing
+
+However, if you think there is a significantly simpler or more maintainable approach for this exercise, feel free to suggest it and explain the tradeoffs.
+
+Please produce:
+
+1. High-level implementation plan (step-by-step)
+2. Recommended sequence of small GitHub PRs (incremental and buildable)
+3. Simple backend architecture 
+4. Simple frontend architecture 
+5. Suggested MongoDB document structure (with example documents)
+6. Suggested package/folder structure for backend and frontend
+
+---
+
+some questions: you said 'No separate DTO layer unless serialization differs significantly from entity' but included FrameRequest.java and FrameResponse.java under dto/ in your plan, why?
+
+---
+
+what are the tradeoffs between options 1 and 2?
+
+---
+
+go with option 2 and update the plan
+
+---
+
+Im starting task by simplifying the docker-compose file to remove services I don't need. I decided to go ahead with mongodb so I removed mariadb and opensearch. Can you review my changes and tell me if these simplications were a good decision. Raise any issues that you see
