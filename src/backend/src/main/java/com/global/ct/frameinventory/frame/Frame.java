@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,4 +27,5 @@ public class Frame {
     private String status;
     private Instant createdDate;
     private Instant modifiedDate;
+    private List<FrameHistoryEntry> history = new ArrayList<>();
 }
