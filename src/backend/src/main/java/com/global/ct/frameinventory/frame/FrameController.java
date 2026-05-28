@@ -1,9 +1,12 @@
 package com.global.ct.frameinventory.frame;
 
+import com.global.ct.frameinventory.csv.CsvUploadResult;
+import com.global.ct.frameinventory.csv.CsvUploadService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,6 +16,7 @@ import java.util.List;
 public class FrameController {
 
     private final FrameService frameService;
+    private final CsvUploadService csvUploadService;
 
     @GetMapping
     public List<Frame> list() {
@@ -39,5 +43,10 @@ public class FrameController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String frameId) {
         frameService.delete(frameId);
+    }
+
+    @PostMapping("/upload")
+    public CsvUploadResult upload(@RequestParam("file") MultipartFile file) {
+        return csvUploadService.processUpload(file);
     }
 }

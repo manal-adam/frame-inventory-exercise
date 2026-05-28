@@ -52,4 +52,18 @@ public class FrameService {
         Frame frame = findByFrameId(frameId);
         frameRepository.delete(frame);
     }
+
+    public boolean existsByFrameId(String frameId) {
+        return frameRepository.findByFrameId(frameId).isPresent();
+    }
+
+    public void save(Frame frame) {
+        if (frame.getCreatedDate() == null) {
+            frame.setCreatedDate(Instant.now());
+        }
+        if (frame.getModifiedDate() == null) {
+            frame.setModifiedDate(Instant.now());
+        }
+        frameRepository.save(frame);
+    }
 }
