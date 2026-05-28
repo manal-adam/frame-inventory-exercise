@@ -1,0 +1,29 @@
+I just review the changes you implemented for pr1 and I'd like to make some changes. You manually added getters and setters for Frame.java, can you use Lombok instead
+
+---
+
+build it to make sure it compiles
+
+---
+
+can you look in inventory_frame.csv and tell me of there are any frames with statuses other than LIVE
+
+---
+
+can you check again and tell me which rows contain statuses other than line
+
+---
+
+can you check again and tell me which rows contain statuses other than live
+
+---
+
+are you sure? this is row 180 containing a LIVE status not 2:  - Add containsWorkItemsUnassignedToFixer field to GraphQL query                                                                                                               
+  - Conditionally render UnassignedMaintenanceJobsBanner based on field                                                                                                         
+  - Add tests for banner visibility (shown/hidden states)     and row 88 also containing a LIVE status not 6:  - Add containsWorkItemsUnassignedToFixer field to GraphQL query                                                                                                               
+  - Conditionally render UnassignedMaintenanceJobsBanner based on field                                                                                                         
+  - Add tests for banner visibility (shown/hidden states)
+
+---
+
+Since theres only 1 value for the status for now, an enum class may not be needed. I removed the enum class and changes status in Frame.java to String, can you give a final review of those changes. Do you agree with my decision? give reasons

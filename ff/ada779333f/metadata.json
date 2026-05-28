@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "ffada779333f",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 6,
+  "files_touched": [
+    "src/backend/build.gradle",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/Frame.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameRepository.java",
+    "src/backend/src/main/resources/application.yml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/ff/ada779333f/0/metadata.json",
+      "transcript": "/ff/ada779333f/0/full.jsonl",
+      "content_hash": "/ff/ada779333f/0/content_hash.txt",
+      "prompt": "/ff/ada779333f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 243,
+    "cache_creation_tokens": 158409,
+    "cache_read_tokens": 440331,
+    "output_tokens": 95,
+    "api_call_count": 20
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "ffada779333f",
+  "session_id": "78e8e039-bb7d-4fa0-8fe3-d90659ab2147",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T13:52:50.471213Z",
+  "branch": "main",
+  "checkpoints_count": 6,
+  "files_touched": [
+    "src/backend/build.gradle",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/Frame.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameRepository.java",
+    "src/backend/src/main/resources/application.yml"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-5-20251101",
+  "turn_id": "2a2b57e62a2c",
+  "token_usage": {
+    "input_tokens": 243,
+    "cache_creation_tokens": 158409,
+    "cache_read_tokens": 440331,
+    "output_tokens": 95,
+    "api_call_count": 20
+  },
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T13:52:50.467069Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 1,
+    "human_removed": 0,
+    "total_committed": 0,
+    "total_lines_changed": 1,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 491,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "IMPLEMENTATION_PLAN.md": 377,
+        "src/backend/build.gradle": 1,
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/Frame.java": 91,
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameRepository.java": 10,
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameStatus.java": 9,
+        "src/backend/src/main/resources/application.yml": 3
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 431,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 431,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 3,
+      "user_lines_removed": 4,
+      "agent_lines_added": 431,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameStatus.java": 3
+      },
+      "user_removed_per_file": {
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/FrameStatus.java": 4
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 430,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 1,
+      "user_lines_removed": 1,
+      "agent_lines_added": 422,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/Frame.java": 1
+      },
+      "user_removed_per_file": {
+        "src/backend/src/main/java/com/global/ct/frameinventory/frame/Frame.java": 1
+      }
+    }
+  ]
+}
