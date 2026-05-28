@@ -1,0 +1,21 @@
+Can you investigate why this project isn't beig recognised as a gradle project
+
+---
+
+ok, I fixed that now and ready to start with pr3. Can you read IMPLEMENTATION_PLAN.md and produce an implementation plan for pr3. Dont make any code changes or commit anything yet.
+
+---
+
+Ok, create an implementation plan for p2
+
+---
+
+Can you revise the PR2 plan and make it more minimal? i want it to focus only on creating simple CRUD endpoints with a clean structure. Avoid overengineering.
+
+---
+
+You simplified this plan a bit too much, can you revise this again to implement a more standard layred spring boot structure? Can you add back the service layer, the     FrameRequest DTO, some basic validation and some standard error handling.
+
+---
+
+yes, implement it now. Dont commit the code when you're finished
