@@ -1,0 +1,21 @@
+ok, I tested the endpoint and it works as expected. I need you to do the following:  1. can you update PR2 to completed in IMPLEMENTATION_PLAN.md, 2. Re-evaluate your plan for pr3 taking into consideration the changes implemented for pr2.
+
+---
+
+I'd like to refine this plan a bit. 1. For malformed rows I'd like to skip them and report them in the response as errors. 2. The upload should be best effort, so valid rows should be saved even if some rows fail.
+
+---
+
+yes
+
+---
+
+try the build again, I turned on the vpn.
+
+---
+
+In this implementation FrameService is handling upload logic via bulkCreate, it should only deal with CRUD and persistence logic. Can you refactor it by moving it to the CSV layer to keep FrameService solely focused on Frame CRUD and persistence? What do you think?
+
+---
+
+Yes, start implementing it.
