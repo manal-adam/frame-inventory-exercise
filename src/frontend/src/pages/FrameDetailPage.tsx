@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteFrame, getFrame } from '../api/frames';
 import type { Frame, FrameHistoryEntry } from '../types/frame';
+import { getStatusChipClass } from '../utils/statusChip';
 
 export function FrameDetailPage() {
   const { frameId } = useParams<{ frameId: string }>();
@@ -29,21 +30,6 @@ export function FrameDetailPage() {
       hour: '2-digit',
       minute: '2-digit',
     });
-  }
-
-  function getStatusChipClass(status: string): string {
-    switch (status.toUpperCase()) {
-      case 'LIVE':
-        return 'chip success';
-      case 'DRAFT':
-        return 'chip neutral';
-      case 'PENDING':
-        return 'chip warning';
-      case 'INACTIVE':
-        return 'chip error';
-      default:
-        return 'chip neutral';
-    }
   }
 
   function getTimelineItemClass(entry: FrameHistoryEntry): string {

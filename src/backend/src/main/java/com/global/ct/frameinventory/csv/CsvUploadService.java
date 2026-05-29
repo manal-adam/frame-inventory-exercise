@@ -23,14 +23,17 @@ public class CsvUploadService {
         return saveFrames(parseResult.validFrames(), parseResult.errors(), parseResult.totalRows());
     }
 
-    private CsvUploadResult saveFrames(List<Frame> frames, List<CsvRowError> parseErrors, int totalRows) {
-        log.info("Processing {} frames from CSV upload", frames.size());
+    private CsvUploadResult saveFrames(List<CsvParserService.ParsedFrame> parsedFrames, List<CsvRowError> parseErrors, int totalRows) {
+        log.info("Processing {} frames from CSV upload", parsedFrames.size());
 
         List<CsvRowError> allErrors = new ArrayList<>(parseErrors);
         int insertedCount = 0;
         int skippedCount = 0;
 
-        for (Frame frame : frames) {
+        for (CsvParserService.ParsedFrame parsedFrame : parsedFrames) {
+            Frame frame = parsedFrame.frame();
+            int rowNumber = parsedFrame.rowNumber();
+
             if (frameService.existsByFrameId(frame.getFrameId())) {
                 skippedCount++;
                 log.debug("Skipping duplicate frameId: {}", frame.getFrameId());
@@ -40,7 +43,7 @@ public class CsvUploadService {
                     insertedCount++;
                 } catch (Exception e) {
                     log.error("Failed to save frame: {}", frame.getFrameId(), e);
-                    allErrors.add(new CsvRowError(0, frame.getFrameId(), "Failed to save: " + e.getMessage()));
+                    allErrors.add(new CsvRowError(rowNumber, frame.getFrameId(), "Failed to save: " + e.getMessage()));
                 }
             }
         }

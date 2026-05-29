@@ -33,7 +33,7 @@ class CsvParserServiceTest {
         assertThat(result.errors()).isEmpty();
         assertThat(result.totalRows()).isEqualTo(2);
 
-        Frame frame1 = result.validFrames().get(0);
+        Frame frame1 = result.validFrames().get(0).frame();
         assertThat(frame1.getFrameId()).isEqualTo("FRAME001");
         assertThat(frame1.getType()).isEqualTo("DIGITAL");
         assertThat(frame1.getFormat()).isEqualTo("D6");
@@ -42,7 +42,7 @@ class CsvParserServiceTest {
         assertThat(frame1.getCreatedDate()).isNotNull();
         assertThat(frame1.getModifiedDate()).isNotNull();
 
-        Frame frame2 = result.validFrames().get(1);
+        Frame frame2 = result.validFrames().get(1).frame();
         assertThat(frame2.getFrameId()).isEqualTo("FRAME002");
         assertThat(frame2.getFormat()).isNull();
         assertThat(frame2.getEnvironment()).isNull();
@@ -150,7 +150,7 @@ class CsvParserServiceTest {
         CsvParserService.CsvParseResult result = csvParserService.parse(file);
 
         assertThat(result.validFrames()).hasSize(1);
-        Frame frame = result.validFrames().get(0);
+        Frame frame = result.validFrames().get(0).frame();
         assertThat(frame.getFrameId()).isEqualTo("FRAME001");
         assertThat(frame.getStatus()).isEqualTo("LIVE");
     }
@@ -166,7 +166,7 @@ class CsvParserServiceTest {
         CsvParserService.CsvParseResult result = csvParserService.parse(file);
 
         assertThat(result.validFrames()).hasSize(1);
-        Frame frame = result.validFrames().get(0);
+        Frame frame = result.validFrames().get(0).frame();
         assertThat(frame.getFrameId()).isEqualTo("FRAME001");
         assertThat(frame.getType()).isEqualTo("DIGITAL");
     }

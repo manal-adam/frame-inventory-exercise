@@ -51,7 +51,7 @@ class CsvUploadServiceTest {
     @Test
     void processUpload_insertsNewFrames() {
         CsvParserService.CsvParseResult parseResult = new CsvParserService.CsvParseResult(
-                List.of(frame1, frame2),
+                List.of(new CsvParserService.ParsedFrame(frame1, 2), new CsvParserService.ParsedFrame(frame2, 3)),
                 Collections.emptyList(),
                 2
         );
@@ -70,7 +70,7 @@ class CsvUploadServiceTest {
     @Test
     void processUpload_skipsDuplicateFrames() {
         CsvParserService.CsvParseResult parseResult = new CsvParserService.CsvParseResult(
-                List.of(frame1, frame2),
+                List.of(new CsvParserService.ParsedFrame(frame1, 2), new CsvParserService.ParsedFrame(frame2, 3)),
                 Collections.emptyList(),
                 2
         );
@@ -91,7 +91,7 @@ class CsvUploadServiceTest {
                 new CsvRowError(2, null, "Missing required field: frame_id")
         );
         CsvParserService.CsvParseResult parseResult = new CsvParserService.CsvParseResult(
-                List.of(frame1),
+                List.of(new CsvParserService.ParsedFrame(frame1, 3)),
                 parseErrors,
                 2
         );
@@ -110,7 +110,7 @@ class CsvUploadServiceTest {
     @Test
     void processUpload_handlesSaveFailure() {
         CsvParserService.CsvParseResult parseResult = new CsvParserService.CsvParseResult(
-                List.of(frame1, frame2),
+                List.of(new CsvParserService.ParsedFrame(frame1, 2), new CsvParserService.ParsedFrame(frame2, 3)),
                 Collections.emptyList(),
                 2
         );
@@ -125,6 +125,7 @@ class CsvUploadServiceTest {
         assertThat(result.getErrorCount()).isEqualTo(1);
         assertThat(result.getErrors().get(0).getMessage()).contains("Failed to save");
         assertThat(result.getErrors().get(0).getFrameId()).isEqualTo("FRAME001");
+        assertThat(result.getErrors().get(0).getRowNumber()).isEqualTo(2);
     }
 
     @Test
@@ -148,7 +149,7 @@ class CsvUploadServiceTest {
     @Test
     void processUpload_skipsAllDuplicates() {
         CsvParserService.CsvParseResult parseResult = new CsvParserService.CsvParseResult(
-                List.of(frame1, frame2),
+                List.of(new CsvParserService.ParsedFrame(frame1, 2), new CsvParserService.ParsedFrame(frame2, 3)),
                 Collections.emptyList(),
                 2
         );

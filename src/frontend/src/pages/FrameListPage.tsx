@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getFrames } from '../api/frames';
 import type { Frame } from '../types/frame';
+import { getStatusChipClass } from '../utils/statusChip';
 
 export function FrameListPage() {
   const [frames, setFrames] = useState<Frame[]>([]);
@@ -23,21 +24,6 @@ export function FrameListPage() {
       month: 'short',
       year: 'numeric',
     });
-  }
-
-  function getStatusChipClass(status: string): string {
-    switch (status.toUpperCase()) {
-      case 'LIVE':
-        return 'chip success';
-      case 'DRAFT':
-        return 'chip neutral';
-      case 'PENDING':
-        return 'chip warning';
-      case 'INACTIVE':
-        return 'chip error';
-      default:
-        return 'chip neutral';
-    }
   }
 
   if (loading) {

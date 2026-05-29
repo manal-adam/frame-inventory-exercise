@@ -26,7 +26,7 @@ public class CsvParserService {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public CsvParseResult parse(MultipartFile file) {
-        List<Frame> validFrames = new ArrayList<>();
+        List<ParsedFrame> validFrames = new ArrayList<>();
         List<CsvRowError> errors = new ArrayList<>();
 
         try (CSVReader reader = new CSVReader(new InputStreamReader(file.getInputStream()))) {
@@ -44,7 +44,7 @@ public class CsvParserService {
                 rowNumber++;
                 try {
                     Frame frame = parseRow(row, columnIndex, rowNumber);
-                    validFrames.add(frame);
+                    validFrames.add(new ParsedFrame(frame, rowNumber));
                 } catch (CsvParseException e) {
                     errors.add(new CsvRowError(rowNumber, e.getFrameId(), e.getMessage()));
                 }
@@ -118,7 +118,9 @@ public class CsvParserService {
         }
     }
 
-    public record CsvParseResult(List<Frame> validFrames, List<CsvRowError> errors, int totalRows) {}
+    public record ParsedFrame(Frame frame, int rowNumber) {}
+
+    public record CsvParseResult(List<ParsedFrame> validFrames, List<CsvRowError> errors, int totalRows) {}
 
     private static class CsvParseException extends Exception {
         private final String frameId;
