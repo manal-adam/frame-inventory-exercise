@@ -1,0 +1,52 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "cdc35e01f8df",
+  "session_id": "4a7e0ce9-5362-4551-9918-7c8b2573f55e",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-29T21:07:26.049872Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "src/backend/src/main/java/com/global/ct/frameinventory/csv/CsvParserService.java",
+    "src/backend/src/main/java/com/global/ct/frameinventory/csv/CsvUploadService.java",
+    "src/backend/src/test/java/com/global/ct/frameinventory/csv/CsvParserServiceTest.java",
+    "src/backend/src/test/java/com/global/ct/frameinventory/csv/CsvUploadServiceTest.java",
+    "src/frontend/src/pages/FrameDetailPage.tsx",
+    "src/frontend/src/pages/FrameListPage.tsx",
+    "src/frontend/src/utils/statusChip.ts"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-5-20251101",
+  "turn_id": "1f41f4877706",
+  "token_usage": {
+    "input_tokens": 17833,
+    "cache_creation_tokens": 4547200,
+    "cache_read_tokens": 26235204,
+    "output_tokens": 1453,
+    "api_call_count": 312
+  },
+  "session_metrics": {
+    "turn_count": 65
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-29T21:07:25.999914Z",
+    "agent_lines": 38,
+    "agent_removed": 46,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 38,
+    "total_lines_changed": 84,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 0
+    }
+  ]
+}
