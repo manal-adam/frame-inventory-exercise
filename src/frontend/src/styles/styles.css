@@ -702,3 +702,102 @@ a:hover { color: var(--primary-dark); }
 .text-center { text-align: center; }
 .overflow-hidden { overflow: hidden; }
 .mt-2 { margin-top: var(--sp-2); }
+
+/* ---------- File upload ---------- */
+.file-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.file-input-wrapper input[type="file"] {
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.file-input-wrapper input[type="file"]::file-selector-button {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-default);
+  background: var(--white);
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-right: var(--sp-2);
+}
+
+.file-input-wrapper input[type="file"]::file-selector-button:hover {
+  background: var(--gray-50);
+}
+
+.selected-file {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-2);
+  background: var(--blue-50);
+  border: 1px solid var(--blue-200);
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--primary-dark);
+}
+
+.upload-results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.upload-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 14px;
+}
+
+.upload-stat.success { color: var(--green-1200); }
+.upload-stat.warning { color: var(--orange-1400); }
+.upload-stat.error { color: var(--red-1000); }
+
+.upload-stat .icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.error-list {
+  margin-top: var(--sp-2);
+  padding: var(--sp-2);
+  background: var(--red-50);
+  border: 1px solid var(--red-200);
+  border-radius: var(--radius);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.error-list-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red-1000);
+  margin-bottom: var(--sp-1);
+}
+
+.error-list ul {
+  margin: 0;
+  padding-left: var(--sp-3);
+  font-size: 12px;
+  color: var(--red-1200);
+}
+
+.error-list li {
+  margin-bottom: 4px;
+}
+
+.error-list li:last-child {
+  margin-bottom: 0;
+}
