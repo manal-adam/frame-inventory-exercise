@@ -1,0 +1,42 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "7c327550647b",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 10,
+  "files_touched": [
+    "src/frontend/package-lock.json",
+    "src/frontend/package.json",
+    "src/frontend/public/fonts/Inter-Bold.ttf",
+    "src/frontend/public/fonts/Inter-Medium.ttf",
+    "src/frontend/public/fonts/Inter-Regular.ttf",
+    "src/frontend/public/fonts/Inter-SemiBold.ttf",
+    "src/frontend/src/App.css",
+    "src/frontend/src/App.tsx",
+    "src/frontend/src/api/frames.ts",
+    "src/frontend/src/index.css",
+    "src/frontend/src/main.tsx",
+    "src/frontend/src/pages/CsvUploadPage.tsx",
+    "src/frontend/src/pages/FrameDetailPage.tsx",
+    "src/frontend/src/pages/FrameFormPage.tsx",
+    "src/frontend/src/pages/FrameListPage.tsx",
+    "src/frontend/src/styles/styles.css",
+    "src/frontend/src/styles/tokens.css",
+    "src/frontend/src/types/frame.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/7c/327550647b/0/metadata.json",
+      "transcript": "/7c/327550647b/0/full.jsonl",
+      "content_hash": "/7c/327550647b/0/content_hash.txt",
+      "prompt": "/7c/327550647b/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 14000,
+    "cache_creation_tokens": 1519772,
+    "cache_read_tokens": 6275099,
+    "output_tokens": 389,
+    "api_call_count": 93
+  }
+}

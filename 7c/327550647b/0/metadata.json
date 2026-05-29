@@ -1,0 +1,122 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "7c327550647b",
+  "session_id": "4a7e0ce9-5362-4551-9918-7c8b2573f55e",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-29T09:27:23.965597Z",
+  "branch": "main",
+  "checkpoints_count": 10,
+  "files_touched": [
+    "src/frontend/package-lock.json",
+    "src/frontend/package.json",
+    "src/frontend/public/fonts/Inter-Bold.ttf",
+    "src/frontend/public/fonts/Inter-Medium.ttf",
+    "src/frontend/public/fonts/Inter-Regular.ttf",
+    "src/frontend/public/fonts/Inter-SemiBold.ttf",
+    "src/frontend/src/App.css",
+    "src/frontend/src/App.tsx",
+    "src/frontend/src/api/frames.ts",
+    "src/frontend/src/index.css",
+    "src/frontend/src/main.tsx",
+    "src/frontend/src/pages/CsvUploadPage.tsx",
+    "src/frontend/src/pages/FrameDetailPage.tsx",
+    "src/frontend/src/pages/FrameFormPage.tsx",
+    "src/frontend/src/pages/FrameListPage.tsx",
+    "src/frontend/src/styles/styles.css",
+    "src/frontend/src/styles/tokens.css",
+    "src/frontend/src/types/frame.ts"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-5-20251101",
+  "turn_id": "8e2da5f6f0b3",
+  "token_usage": {
+    "input_tokens": 14000,
+    "cache_creation_tokens": 1519772,
+    "cache_read_tokens": 6275099,
+    "output_tokens": 389,
+    "api_call_count": 93
+  },
+  "session_metrics": {
+    "turn_count": 26
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-29T09:27:23.952119Z",
+    "agent_lines": 1104,
+    "agent_removed": 73,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 14,
+    "total_committed": 1104,
+    "total_lines_changed": 1191,
+    "agent_percentage": 98.82451721242653,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 14,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 0,
+      "user_removed_per_file": {
+        "src/frontend/package-lock.json": 14
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 14
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 14
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 14
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 14
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 376,
+      "agent_lines_removed": 14
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1494,
+      "agent_lines_removed": 87
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1494,
+      "agent_lines_removed": 87
+    }
+  ]
+}
