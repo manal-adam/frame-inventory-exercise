@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { FrameDetailPage } from './FrameDetailPage';
@@ -6,6 +7,15 @@ import * as framesApi from '../api/frames';
 import type { Frame } from '../types/frame';
 
 vi.mock('../api/frames');
+
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
 
 const mockFrame: Frame = {
   id: '1',
@@ -211,5 +221,72 @@ describe('FrameDetailPage', () => {
     const firstItem = timelineItems[0];
     expect(firstItem.textContent).toContain('editor');
     expect(firstItem.textContent).toContain('updated this frame');
+  });
+
+  it('has delete button', async () => {
+    vi.mocked(framesApi.getFrame).mockResolvedValue(mockFrame);
+
+    renderWithRouter('FRAME001');
+
+    await waitFor(() => {
+      expect(screen.getByText('Details')).toBeInTheDocument();
+    });
+
+    expect(screen.getByRole('button', { name: 'Delete' })).toBeInTheDocument();
+  });
+
+  it('deletes frame and navigates to list on confirm', async () => {
+    const user = userEvent.setup();
+    vi.mocked(framesApi.getFrame).mockResolvedValue(mockFrame);
+    vi.mocked(framesApi.deleteFrame).mockResolvedValue(undefined);
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+
+    renderWithRouter('FRAME001');
+
+    await waitFor(() => {
+      expect(screen.getByText('Details')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Delete' }));
+
+    await waitFor(() => {
+      expect(framesApi.deleteFrame).toHaveBeenCalledWith('FRAME001');
+    });
+    expect(mockNavigate).toHaveBeenCalledWith('/');
+  });
+
+  it('does not delete frame when confirm is cancelled', async () => {
+    const user = userEvent.setup();
+    vi.mocked(framesApi.getFrame).mockResolvedValue(mockFrame);
+    vi.spyOn(window, 'confirm').mockReturnValue(false);
+
+    renderWithRouter('FRAME001');
+
+    await waitFor(() => {
+      expect(screen.getByText('Details')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Delete' }));
+
+    expect(framesApi.deleteFrame).not.toHaveBeenCalled();
+  });
+
+  it('shows error when delete fails', async () => {
+    const user = userEvent.setup();
+    vi.mocked(framesApi.getFrame).mockResolvedValue(mockFrame);
+    vi.mocked(framesApi.deleteFrame).mockRejectedValue(new Error('Delete failed'));
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+
+    renderWithRouter('FRAME001');
+
+    await waitFor(() => {
+      expect(screen.getByText('Details')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Delete' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Error: Delete failed')).toBeInTheDocument();
+    });
   });
 });

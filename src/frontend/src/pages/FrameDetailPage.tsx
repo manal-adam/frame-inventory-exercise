@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getFrame } from '../api/frames';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { deleteFrame, getFrame } from '../api/frames';
 import type { Frame, FrameHistoryEntry } from '../types/frame';
 
 export function FrameDetailPage() {
   const { frameId } = useParams<{ frameId: string }>();
+  const navigate = useNavigate();
   const [frame, setFrame] = useState<Frame | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     if (!frameId) return;
@@ -50,6 +52,20 @@ export function FrameDetailPage() {
 
   function getActionVerb(action: string): string {
     return action === 'CREATE' ? 'created this frame' : 'updated this frame';
+  }
+
+  async function handleDelete() {
+    if (!frameId) return;
+    if (!window.confirm('Are you sure you want to delete this frame?')) return;
+
+    setDeleting(true);
+    try {
+      await deleteFrame(frameId);
+      navigate('/');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to delete frame');
+      setDeleting(false);
+    }
   }
 
   if (loading) {
@@ -101,9 +117,19 @@ export function FrameDetailPage() {
             </span>
           </h1>
         </div>
-        <Link to={`/frames/${frame.frameId}/edit`} className="btn primary">
-          Edit frame
-        </Link>
+        <div className="btn-group">
+          <Link to={`/frames/${frame.frameId}/edit`} className="btn primary">
+            Edit frame
+          </Link>
+          <button
+            type="button"
+            className="btn danger-ghost"
+            onClick={handleDelete}
+            disabled={deleting}
+          >
+            {deleting ? 'Deleting...' : 'Delete'}
+          </button>
+        </div>
       </header>
 
       <div className="surface">
