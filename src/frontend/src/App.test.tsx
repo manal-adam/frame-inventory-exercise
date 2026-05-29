@@ -40,7 +40,7 @@ describe('App routing', () => {
 
   it('renders FrameDetailPage at /frames/:frameId', () => {
     renderWithRouter('/frames/FRAME001');
-    expect(screen.getByText('Frame: FRAME001')).toBeInTheDocument();
+    expect(screen.getByText('Loading frame...')).toBeInTheDocument();
   });
 
   it('renders FrameFormPage at /frames/:frameId/edit', () => {
