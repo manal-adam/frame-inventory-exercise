@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "26e8dab52863",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 7,
+  "files_touched": [
+    "src/frontend/package-lock.json",
+    "src/frontend/package.json",
+    "src/frontend/src/pages/FrameListPage.test.tsx",
+    "src/frontend/src/test/setup.ts",
+    "src/frontend/vitest.config.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/26/e8dab52863/0/metadata.json",
+      "transcript": "/26/e8dab52863/0/full.jsonl",
+      "content_hash": "/26/e8dab52863/0/content_hash.txt",
+      "prompt": "/26/e8dab52863/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 16409,
+    "cache_creation_tokens": 2088108,
+    "cache_read_tokens": 10641106,
+    "output_tokens": 504,
+    "api_call_count": 142
+  }
+}
