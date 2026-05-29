@@ -131,3 +131,31 @@ I'm ready to proceed with pr7, produce an implementatin plan for it including te
 ---
 
 Proceed with the implementation
+
+---
+
+produce an implementation plan for pr8 including tests
+
+---
+
+Why are you updating the routing tests in src/App.test.tsx for new form behaviour? shouldnt those tests live in FrameFormPage.test.tsx and App.test.tsx be purely for routing tests?
+
+---
+
+yes
+
+---
+
+I'd like to implement some changes: 1. Refactor the inline styles into CSS stylesheets, they're getting too big
+
+---
+
+Also, I don't want to use hardcoded values for STATUS_OPTIONS, ENVIRONMENT_OPTIONS and TYPE_OPTIONS. Can you add them as enums to the backend, can you expose them to th frontend and map through those values for the drop downs? I'm not asking you to make the changes, just answer my question
+
+---
+
+Given the scope of this task, would it be better if I add the contants in the frontend only?
+
+---
+
+create the frontend constants file

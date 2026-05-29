@@ -3,11 +3,15 @@
   "checkpoint_id": "33a03616b949",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 2,
+  "checkpoints_count": 6,
   "files_touched": [
     "src/frontend/src/App.test.tsx",
-    "src/frontend/src/pages/FrameDetailPage.test.tsx",
-    "src/frontend/src/pages/FrameDetailPage.tsx"
+    "src/frontend/src/constants/frame.ts",
+    "src/frontend/src/pages/FrameDetailPage.tsx",
+    "src/frontend/src/pages/FrameFormPage.test.tsx",
+    "src/frontend/src/pages/FrameFormPage.tsx",
+    "src/frontend/src/pages/FrameListPage.tsx",
+    "src/frontend/src/styles/styles.css"
   ],
   "sessions": [
     {
@@ -18,10 +22,10 @@
     }
   ],
   "token_usage": {
-    "input_tokens": 16869,
-    "cache_creation_tokens": 2977588,
-    "cache_read_tokens": 15779228,
-    "output_tokens": 986,
-    "api_call_count": 197
+    "input_tokens": 17149,
+    "cache_creation_tokens": 3471519,
+    "cache_read_tokens": 18334835,
+    "output_tokens": 1123,
+    "api_call_count": 230
   }
 }
