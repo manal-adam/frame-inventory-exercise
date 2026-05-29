@@ -42,7 +42,7 @@ export function FrameListPage() {
 
   if (loading) {
     return (
-      <div style={{ padding: 'var(--sp-4)' }}>
+      <div className="page">
         <p>Loading frames...</p>
       </div>
     );
@@ -50,29 +50,22 @@ export function FrameListPage() {
 
   if (error) {
     return (
-      <div style={{ padding: 'var(--sp-4)' }}>
-        <p style={{ color: 'var(--error-main)' }}>Error: {error}</p>
+      <div className="page">
+        <p className="error-text">Error: {error}</p>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 'var(--sp-4)' }}>
-      <header style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 'var(--sp-3)'
-      }}>
+    <div className="page">
+      <header className="page-header">
         <div>
-          <h1 style={{ margin: 0, fontSize: '20px', fontWeight: 600 }}>
-            Frames
-          </h1>
-          <p style={{ margin: '4px 0 0', color: 'var(--text-secondary)', fontSize: '13px' }}>
+          <h1 className="page-title">Frames</h1>
+          <p className="page-subtitle">
             {frames.length} {frames.length === 1 ? 'frame' : 'frames'}
           </p>
         </div>
-        <div style={{ display: 'flex', gap: 'var(--sp-1)' }}>
+        <div className="btn-group">
           <Link to="/upload" className="btn secondary">
             Upload CSV
           </Link>
@@ -83,16 +76,16 @@ export function FrameListPage() {
       </header>
 
       {frames.length === 0 ? (
-        <div className="surface" style={{ padding: 'var(--sp-4)', textAlign: 'center' }}>
-          <p style={{ color: 'var(--text-secondary)' }}>No frames yet.</p>
-          <p style={{ marginTop: 'var(--sp-2)' }}>
+        <div className="surface empty">
+          <p className="text-muted">No frames yet.</p>
+          <p className="mt-2">
             <Link to="/frames/new" className="btn primary">Create your first frame</Link>
             {' or '}
             <Link to="/upload" className="btn secondary">Upload a CSV</Link>
           </p>
         </div>
       ) : (
-        <div className="surface" style={{ overflow: 'hidden' }}>
+        <div className="surface overflow-hidden">
           <table className="tbl">
             <thead>
               <tr>

@@ -625,3 +625,80 @@ a:hover { color: var(--primary-dark); }
   font-family: ui-monospace, Menlo, monospace;
   font-size: 11px;
 }
+
+/* ---------- Page layout ---------- */
+.page { padding: var(--sp-4); }
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sp-3);
+}
+
+.page-header-start { margin-bottom: var(--sp-3); }
+
+.page-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.page-title-inline {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.page-subtitle {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: var(--sp-1);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.btn-group {
+  display: flex;
+  gap: var(--sp-1);
+}
+
+/* ---------- Error states ---------- */
+.error-text { color: var(--error-main); }
+
+.error-banner {
+  padding: var(--sp-2);
+  margin-bottom: var(--sp-3);
+  background: var(--red-50);
+  border: 1px solid var(--red-200);
+  border-radius: var(--radius);
+  color: var(--error-dark);
+  font-size: 13px;
+}
+
+/* ---------- Form layout ---------- */
+.form-grid {
+  display: grid;
+  gap: var(--sp-3);
+  max-width: 480px;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--sp-1);
+  margin-top: var(--sp-2);
+}
+
+/* ---------- Utility classes ---------- */
+.text-muted { color: var(--text-secondary); }
+.text-center { text-align: center; }
+.overflow-hidden { overflow: hidden; }
+.mt-2 { margin-top: var(--sp-2); }

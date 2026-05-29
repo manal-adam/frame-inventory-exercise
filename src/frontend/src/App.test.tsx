@@ -40,12 +40,13 @@ describe('App routing', () => {
 
   it('renders FrameDetailPage at /frames/:frameId', () => {
     renderWithRouter('/frames/FRAME001');
-    expect(screen.getByText('Frame: FRAME001')).toBeInTheDocument();
+    expect(screen.getByText('Loading frame...')).toBeInTheDocument();
   });
 
   it('renders FrameFormPage at /frames/:frameId/edit', () => {
     renderWithRouter('/frames/FRAME001/edit');
-    expect(screen.getByText('Edit frame')).toBeInTheDocument();
+    // In edit mode, shows loading while fetching frame data
+    expect(screen.getByText('Loading frame...')).toBeInTheDocument();
   });
 
   it('renders CsvUploadPage at /upload', () => {
