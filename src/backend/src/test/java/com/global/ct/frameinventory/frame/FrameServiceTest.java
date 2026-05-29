@@ -192,4 +192,118 @@ class FrameServiceTest {
 
         assertThat(result).isFalse();
     }
+
+
+
+    @Test
+    void update_tracksMultipleFieldChanges() {
+        when(frameRepository.findByFrameId("FRAME001")).thenReturn(Optional.of(existingFrame));
+        when(frameRepository.save(any(Frame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        request.setType("CLASSIC");
+        request.setStatus("DRAFT");
+        request.setFormat("D12");
+        Frame result = frameService.update("FRAME001", request);
+
+        assertThat(result.getHistory()).hasSize(1);
+        FrameHistoryEntry historyEntry = result.getHistory().get(0);
+        assertThat(historyEntry.getChanges()).hasSize(3);
+
+        assertThat(historyEntry.getChanges())
+                .extracting(ChangedField::getField)
+                .containsExactlyInAnyOrder("type", "status", "format");
+    }
+
+    @Test
+    void update_tracksNullToValueChange() {
+        existingFrame.setFormat(null);
+        when(frameRepository.findByFrameId("FRAME001")).thenReturn(Optional.of(existingFrame));
+        when(frameRepository.save(any(Frame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        request.setFormat("D6");
+        Frame result = frameService.update("FRAME001", request);
+
+        assertThat(result.getHistory()).hasSize(1);
+        ChangedField change = result.getHistory().get(0).getChanges().get(0);
+        assertThat(change.getField()).isEqualTo("format");
+        assertThat(change.getOldValue()).isNull();
+        assertThat(change.getNewValue()).isEqualTo("D6");
+    }
+
+    @Test
+    void update_tracksValueToNullChange() {
+        when(frameRepository.findByFrameId("FRAME001")).thenReturn(Optional.of(existingFrame));
+        when(frameRepository.save(any(Frame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        request.setFormat(null);
+        Frame result = frameService.update("FRAME001", request);
+
+        assertThat(result.getHistory()).hasSize(1);
+        ChangedField change = result.getHistory().get(0).getChanges().get(0);
+        assertThat(change.getField()).isEqualTo("format");
+        assertThat(change.getOldValue()).isEqualTo("D6");
+        assertThat(change.getNewValue()).isNull();
+    }
+
+    @Test
+    void update_accumulatesHistoryOverMultipleUpdates() {
+        FrameHistoryEntry existingHistory = FrameHistoryEntry.builder()
+                .timestamp(Instant.now().minusSeconds(3600))
+                .action(Action.CREATE)
+                .user("system")
+                .changes(List.of())
+                .build();
+        existingFrame.getHistory().add(existingHistory);
+
+        when(frameRepository.findByFrameId("FRAME001")).thenReturn(Optional.of(existingFrame));
+        when(frameRepository.save(any(Frame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        request.setStatus("DRAFT");
+        Frame result = frameService.update("FRAME001", request);
+
+        assertThat(result.getHistory()).hasSize(2);
+        assertThat(result.getHistory().get(0).getAction()).isEqualTo(Action.CREATE);
+        assertThat(result.getHistory().get(1).getAction()).isEqualTo(Action.UPDATE);
+    }
+
+    @Test
+    void update_setsTimestampOnHistoryEntry() {
+        Instant beforeUpdate = Instant.now();
+        when(frameRepository.findByFrameId("FRAME001")).thenReturn(Optional.of(existingFrame));
+        when(frameRepository.save(any(Frame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        request.setStatus("DRAFT");
+        Frame result = frameService.update("FRAME001", request);
+
+        FrameHistoryEntry historyEntry = result.getHistory().get(0);
+        assertThat(historyEntry.getTimestamp()).isNotNull();
+        assertThat(historyEntry.getTimestamp()).isAfterOrEqualTo(beforeUpdate);
+    }
+
+    @Test
+    void create_setsTimestampOnHistoryEntry() {
+        Instant beforeCreate = Instant.now();
+        when(frameRepository.save(any(Frame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        Frame result = frameService.create(request);
+
+        FrameHistoryEntry historyEntry = result.getHistory().get(0);
+        assertThat(historyEntry.getTimestamp()).isNotNull();
+        assertThat(historyEntry.getTimestamp()).isAfterOrEqualTo(beforeCreate);
+    }
+
+    @Test
+    void update_tracksEnvironmentChange() {
+        when(frameRepository.findByFrameId("FRAME001")).thenReturn(Optional.of(existingFrame));
+        when(frameRepository.save(any(Frame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        request.setEnvironment("ROADSIDE");
+        Frame result = frameService.update("FRAME001", request);
+
+        assertThat(result.getHistory()).hasSize(1);
+        ChangedField change = result.getHistory().get(0).getChanges().get(0);
+        assertThat(change.getField()).isEqualTo("environment");
+        assertThat(change.getOldValue()).isEqualTo("UNDERGROUND");
+        assertThat(change.getNewValue()).isEqualTo("ROADSIDE");
+    }
 }
