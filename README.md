@@ -172,6 +172,9 @@ The trade-off is that there is no single source of truth, which can lead to inco
 
 Integration tests use Testcontainers and a real MongoDB instance rather than mocked repositories. This provides greater confidence that database interactions work correctly, at the cost of slightly longer test execution times.
 
+#### 7. Docker build approach
+The backend was originally built using the Gradle wrapper, but was changed to use a Gradle Docker image due to SSL issues during dependency download inside the container. This change was made to unblock progress and ensure the project can still be run using a single `docker compose up --build` command.
+
 ### Test Coverage
 
 The project contains:

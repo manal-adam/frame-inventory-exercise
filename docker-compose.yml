@@ -1,17 +1,3 @@
-# ----------------------------------------------------------------------------
-# Suggested infrastructure for the Frame Inventory exercise.
-#
-# This compose file is a starting point, not a requirement. You are free to
-# swap any of these services for tooling you prefer (a different database,
-# search engine, message broker, hosting model, etc.) as long as the final
-# stack still runs end-to-end with a single command.
-#
-# If you do choose to use the services provided here, pick ONE of the two
-# datastores for your domain data — either `mongodb` or `mariadb-primary`,
-# not both. Remove the service you do not need (and its volume) so the
-# stack reflects the design you actually built.
-# ----------------------------------------------------------------------------
-
 services:
   backend:
     build:
@@ -21,6 +7,7 @@ services:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATA_MONGODB_URI: mongodb://root:root@mongodb:27017/frames?authSource=admin
     depends_on:
       - mongodb
     networks:
