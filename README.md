@@ -8,7 +8,7 @@ It supports:
 - Simple UI for uploading, viewing, editing, and deleting frames
 
 
-Monorepo scaffold for the frame-inventory take-home exercise. Bring the whole stack up with one command:
+Bring the whole stack up with one command:
 
 ```bash
 docker compose up --build
@@ -101,26 +101,60 @@ npm test
 - Frontend - React 19, Vite, TypeScript
 - Database - MongoDB
 
-The application is intentionally simple and optimised for the take-home exercise rather than a production grade application.
+I approached the exercise incrementally, focusing on delivering working functionality in small, manageable steps.
+
+I began by simplifying the provided infrastructure and selecting MongoDB as the primary datastore. From there, I implemented the core backend functionality first, including the frame domain model, persistence layer, REST API, and history tracking. This ensured that the main business functionality was available and testable before any frontend work began.
+
+Once the CRUD operations were complete, I implemented CSV upload functionality, including validation, duplicate detection, error reporting, and bulk uploads. Particular attention was given to ensuring that the import failures provided useful feedback to allow users to identify and correct problems in uploaded files.
+
+With the backend complete, I built the frontend, starting with frame listing and navigation before adding frame details, history views, create and edit forms, CSV upload functionality, and frame deletion. Having the backend endpoints available first allowed each frontend feature to be implemented and tested against real application behaviour as it was developed.
+
+Testing was added alongside development, with unit tests written for backend services and frontend components. Integration tests were added to verify end-to-end backend behaviour against a real MongoDB instance using Testcontainers.
+
+To keep the work manageable and reduce risk, I split the implementation into a series of small PRs, each focused on a single piece of functionality. This made it easier to validate progress, maintain code quality, and avoid introducing multiple concerns in a single change.
+
+| PR | Title                                                  | Scope                                         |
+|----|--------------------------------------------------------|-----------------------------------------------|
+| 1  | Simplify docker compose configuration                  | Infrastructure cleanup                        |
+| 2  | feat: Add MongoDB Frame entity and repository          | Backend: entity, repository, MongoDB config   |
+| 3  | feat: Add Frame CRUD REST endpoints                    | Backend: controller, service, validation      |
+| 4  | feat: Add CSV bulk upload endpoint                     | Backend: CSV parsing, bulk insert             |
+| 5  | feat: Add frame history tracking                       | Backend: audit trail on updates               |
+| 6  | feat: Add frontend project structure and design tokens | Frontend: setup, tokens, shared components    |
+| 7  | feat: Add frame list page                              | Frontend: list view with table                |
+| 8  | feat: Add frame detail and history views               | Frontend: detail page, history timeline       |
+| 9  | feat: Add frame create/edit forms                      | Frontend: form components                     |
+| 10 | feat: Add CSV upload UI                                | Frontend: file upload component               |
+| 11 | chore: Add tests and update documentation              | Unit tests, integration tests, README updates |
+
 
 ### Key design decisions
 
-#### 1. MongoDB with embedded document model 
+#### 1. Simplified Data Model
 
-frame history is stored in the frame document rather than a separate collection. This approach was chosen to keep the data model simple and aligned with the scope of the exercise.
+The source CSV field contains a large number of columns describing location information, commercial metadata, pricing, dimensions, and other details. Rather than modelling every field, I selected a smaller subset of attributes that were sufficient to demonstrate the core requirements of the exercise: frame identification, type and status management, history tracking, and CSV upload.
+
+This reduced the complexity of the domain model and allowed development to be focused on the functionality requested by the exercise.
+
+The trade-off is that some information present in the source data is not represented in the application.
+
+ 
+#### 2. MongoDB with embedded document model 
+
+Frame history is stored in the frame document rather than a separate collection. This approach was chosen to keep the data model simple and aligned with the scope of the exercise.
 It allows a frame and its full history to be retrieved in a single database call.
 
 The trade-off is that this approach is less suitable for large scale datasets where history can grow significantly and more complex queries are required. 
 
 
-#### 2. No DTO layer - the entities are directly returned from the repository
+#### 3. No DTO layer
 
 
-The application returns the frame entity directly from the backend rather than introducing a dedicated DTO layer. This decision was made to reduce boilerplate and keep the implementation lightweight and focused on core functionality.
+The application returns the frame entity directly from the backend rather than introducing a separate DTO layer. This helped keep the code simple and avoided creating additional classes and mapping logic.
    
-This improved development speed and simplicity but introduced tighter coupling between the backend model and the API contract, which would be undesirable in a larger application.
+The trade-off is that the API is more closely coupled to the backend model. In a larger application, a DTO layer would provide a cleaner separation between the internal backend model and the API.
 
-#### 3. Synchronous CSV upload:
+#### 4. Synchronous CSV upload
 
 CSV uploads are handled synchronously to keep the implementation straightforward and avoid the complexities that come with asynchronous processing like background jobs and queues.
 This was considered sufficient for the scale of data in this exercise.
@@ -128,15 +162,21 @@ This was considered sufficient for the scale of data in this exercise.
 The main trade-off is that this approach would not scale well for very large files where asynchronous processing would be more appropriate.
 
 
-#### 4. Frontend constants for enums - status and type values are defined in frontend constants, not backend enums.
+#### 5. Frontend constants instead of backend enums.
 
-Status and type values are defined in frontend constants rather than backend enums to keep the system simpler and more flexible.
+Status and type values are defined in frontend constants rather than backend enums to keep the implementation simple for this exercise.
 
-The downside is that there is no single source of truth, which can lead to inconsistencies if frontend and backend definitions diverge.
+The trade-off is that there is no single source of truth, which can lead to inconsistencies if frontend and backend definitions diverge.
 
-#### 5. Simplified Data Model
+#### 6. Testcontainers for integration testing
 
-The domain model focuses on a small set of core frame attributes required for the exercise: frameId, type, format, environment, status.
-The full CSV contains a significantly larger number of fields, such as location, commercial metadata, pricing, and dimensional data. These were intentionally excluded from the domain model to keep the implementation focused on demonstrating CRUD operations, history tracking, and CSV ingestion. 
+Integration tests use Testcontainers and a real MongoDB instance rather than mocked repositories. This provides greater confidence that database interactions work correctly, at the cost of slightly longer test execution times.
 
-The trade-off is that the system is simple at the cost of not fully representing the richness of the dataset.
+### Test Coverage
+
+The project contains:
+
+- 51 backend tests (45 unit tests, 6 integration tests)
+- 73 frontend tests
+
+Backend integration tests use Testcontainers to run against a real MongoDB instance.
